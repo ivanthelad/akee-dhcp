@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dhcpadmin
+  name: dhcpadmin
+  namespace: dhcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dhcpadmin
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: dhcpadmin
+    spec:
+      containers:
+      - image: REGISTRY/kea-dhcp-admin:v7
+        name: kea-dhcp-admin
+        resources: {}
+        env:  # Add environment variables here
+        - name: DHCP4_SERVER
+          value: "podIPServer"
+status: {}

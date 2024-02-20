@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dhcp
+  name: dhcp
+  namespace: dhcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dhcp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: dhcp
+    spec:
+      containers:
+      - image: REGISTRY/kea-dhcp:v8
+        name: kea-dhcp
+        ports:
+        - containerPort: 68
+        resources: {}
+status: {}
